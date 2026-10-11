@@ -1,0 +1,4 @@
+# Copie ce fichier en hosts.ini (ignoré par Git) et colle la ligne affichée par
+# `terraform output ansible_inventory_line`.
+[k3s]
+vm ansible_host=203.0.113.20 ansible_user=azureuser ansible_ssh_private_key_file=~/.ssh/id_ed25519_azure

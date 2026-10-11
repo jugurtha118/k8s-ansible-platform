@@ -1,0 +1,5 @@
+---
+k3s_version: ""
+k3s_install_script_url: https://get.k3s.io
+# Où le fichier kubeconfig est copié sur ta machine (ignoré par Git)
+k3s_kubeconfig_local_path: "{{ playbook_dir }}/../kubeconfig/k3s.yaml"

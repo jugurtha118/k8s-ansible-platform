@@ -1,0 +1,11 @@
+---
+# Point d'entrée : configure la VM de bout en bout.
+#   cd ansible && ansible-playbook playbooks/site.yml
+- name: Configurer le serveur et installer Kubernetes (k3s)
+  hosts: k3s
+  become: true
+  roles:
+    - role: common
+      tags: [common]
+    - role: k3s
+      tags: [k3s]

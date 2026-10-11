@@ -1,0 +1,12 @@
+# Cluster k3s sur la VM Azure : l'image vient du registre GitHub (GHCR).
+# Remplace <ton-user-github> puis, dans GitHub, rends le paquet public
+# (Packages > k8s-ansible-platform > Package settings > Change visibility).
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../base
+  - ingress.yaml
+images:
+  - name: webapp
+    newName: ghcr.io/<ton-user-github>/k8s-ansible-platform
+    newTag: latest

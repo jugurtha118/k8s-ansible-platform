@@ -1,0 +1,41 @@
+---
+# Installe un cluster Kubernetes k3s à un nœud, puis récupère le kubeconfig.
+
+- name: Vérifier si k3s est déjà installé
+  ansible.builtin.stat:
+    path: /usr/local/bin/k3s
+  register: k3s_binary
+
+- name: Télécharger le script d'installation officiel de k3s
+  ansible.builtin.get_url:
+    url: "{{ k3s_install_script_url }}"
+    dest: /tmp/k3s-install.sh
+    mode: "0755"
+  when: not k3s_binary.stat.exists
+
+# `creates` rend la tâche idempotente : si k3s existe déjà, elle est ignorée.
+- name: Installer k3s
+  ansible.builtin.command:
+    cmd: /tmp/k3s-install.sh
+    creates: /usr/local/bin/k3s
+  environment: "{{ {'INSTALL_K3S_VERSION': k3s_version} if (k3s_version | length > 0) else {} }}"
+
+- name: S'assurer que le service k3s tourne
+  ansible.builtin.service:
+    name: k3s
+    state: started
+    enabled: true
+
+- name: Attendre que le nœud soit prêt
+  ansible.builtin.command: /usr/local/bin/k3s kubectl wait --for=condition=Ready node --all --timeout=30s
+  register: k3s_node_ready
+  until: k3s_node_ready.rc == 0
+  retries: 10
+  delay: 10
+  changed_when: false
+
+- name: Récupérer le kubeconfig sur ta machine
+  ansible.builtin.fetch:
+    src: /etc/rancher/k3s/k3s.yaml
+    dest: "{{ k3s_kubeconfig_local_path }}"
+    flat: true

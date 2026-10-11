@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Azure Cloud Platform</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 640px; margin: 3rem auto; padding: 0 1rem; color: #1b1b1b; }
+    h1 { font-size: 1.5rem; }
+    pre { background: #f4f4f4; padding: 1rem; border-radius: 8px; overflow-x: auto; }
+    a { color: #0b5cad; }
+  </style>
+</head>
+<body>
+  <h1>Azure Cloud Platform</h1>
+  <p>Application déployée sur Azure App Service via Terraform et GitHub Actions.</p>
+  <pre id="info">chargement…</pre>
+  <p><a href="/health">/health</a> · <a href="/api/info">/api/info</a></p>
+  <script>
+    fetch("/api/info").then(r => r.json()).then(d => {
+      document.getElementById("info").textContent = JSON.stringify(d, null, 2);
+    }).catch(() => { document.getElementById("info").textContent = "API indisponible"; });
+  </script>
+</body>
+</html>

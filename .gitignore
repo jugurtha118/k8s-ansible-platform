@@ -1,0 +1,18 @@
+node_modules/
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+!terraform.tfvars.example
+crash.log
+# Ansible
+ansible/inventory/hosts.ini
+ansible/kubeconfig/
+ansible/group_vars/**/vault.yml
+*.retry
+# Secrets
+*.pem
+id_*
+.env
+.DS_Store

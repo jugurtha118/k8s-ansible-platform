@@ -1,0 +1,5 @@
+# Copie ce fichier en terraform.tfvars (ignoré par Git) et complète.
+subscription_id  = "00000000-0000-0000-0000-000000000000"
+allowed_ssh_cidr = "203.0.113.10/32" # ton IP publique : curl -4 ifconfig.me
+# vm_size        = "Standard_B2s"
+# location       = "francecentral"

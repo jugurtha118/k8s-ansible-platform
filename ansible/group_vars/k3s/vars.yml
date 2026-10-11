@@ -1,0 +1,12 @@
+---
+# Variables communes au groupe "k3s". Les valeurs sensibles iraient dans un fichier
+# chiffré avec Ansible Vault (voir docs/ansible.md).
+common_packages:
+  - ufw
+  - fail2ban
+  - curl
+  - unattended-upgrades
+  - ca-certificates
+
+# Vide = dernière version stable. Pour figer : k3s_version: "v1.xx.x+k3s1"
+k3s_version: ""

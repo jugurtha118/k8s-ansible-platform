@@ -1,0 +1,4 @@
+---
+common_ufw_allowed_ports: ["22", "80", "443"]
+# Plages réseau internes par défaut de k3s (pods, services)
+common_ufw_k8s_cidrs: ["10.42.0.0/16", "10.43.0.0/16"]

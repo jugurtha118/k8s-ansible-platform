@@ -1,0 +1,17 @@
+# k3s embarque Traefik comme contrôleur d'entrée : cet Ingress publie le service sur le port 80 de la VM.
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: webapp
+  namespace: demo
+spec:
+  rules:
+    - http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: webapp
+                port:
+                  name: http

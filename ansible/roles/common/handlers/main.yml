@@ -1,0 +1,6 @@
+---
+# Un handler ne s'exécute que si une tâche a notifié un changement : pas de redémarrage inutile.
+- name: Redémarrer ssh
+  ansible.builtin.service:
+    name: ssh
+    state: restarted

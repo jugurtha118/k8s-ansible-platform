@@ -1,0 +1,17 @@
+{
+  "name": "azure-cloud-platform-app",
+  "version": "1.0.0",
+  "description": "Petite application Node.js déployée sur Azure App Service (projet d'entraînement Cloud/DevOps)",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "express": "^4.21.0"
+  },
+  "license": "MIT"
+}

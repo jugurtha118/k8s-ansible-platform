@@ -1,0 +1,9 @@
+# Cluster local (kind) : l'image est construite sur ta machine puis chargée dans le cluster.
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - ../../base
+images:
+  - name: webapp
+    newName: webapp
+    newTag: local

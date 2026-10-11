@@ -1,0 +1,10 @@
+# Configuration non sensible, injectée comme variables d'environnement.
+# Pour une valeur sensible, on utiliserait un Secret (voir docs/kubernetes.md).
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: webapp-config
+  namespace: demo
+data:
+  APP_ENV: "k8s"
+  APP_VERSION: "1.0.0"
